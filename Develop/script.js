@@ -25,7 +25,7 @@ var timeBlockEl = $(".container");
 
 // assign existing class - js equivalent: timeblockEl.className = ("time-block");
 // nb: if no second value, becomes 'get' attribute (not 'set' attribute)
-timeBlockEl.attr("class", "time-block");
+timeBlockEl.addClass("time-block");
 
 // create and assign new class - js equivalent: timeblockEl.classList.add("d-Flex");
 timeBlockEl.addClass("c-Flex");
@@ -33,15 +33,15 @@ timeBlockEl.addClass("c-Flex");
 
 // create array of each hour of the day 9am-5pm
 var hours = [
-    "9am",
-    "10am",
-    "11am",
-    "12pm",
-    "1pm",
-    "2pm",
-    "3pm",
-    "4pm",
-    "5pm",
+    "9AM",
+    "10AM",
+    "11AM",
+    "12PM",
+    "1PM",
+    "2PM",
+    "3PM",
+    "4PM",
+    "5PM",
 ];
 
 // create rows for each hour of the day
@@ -49,11 +49,11 @@ for (var i = 0; i < hours.length; i++) {
 
     // create div to hold display elements - js equivilant: var rowEl = document.createElement("div");
     var rowEl = $("<div>");
-    rowEl.addClass("d-Flex" , "row");
+    rowEl.addClass("d-Flex");
+    rowEl.addClass("row");
     // rowEl.addClass("row");
     // for testing only - need to create an if rule
-    rowEl.addClass("past");
-    rowEl.addClass("class", "description");
+    // rowEl.addClass("description");
     timeBlockEl.append(rowEl);
 
     // create div to display hour
@@ -69,12 +69,20 @@ for (var i = 0; i < hours.length; i++) {
     // create text area
     var textArea = $("<textArea>")
     rowEl.append(textArea);
-    textArea.attr("class", "textarea");
-    textArea.attr("class", "description");
+    textArea.addClass("past");
+    textArea.addClass("textarea");
+    textArea.addClass("description");
    
     // create button
     saveBtn = $("<button>");
     saveBtn.attr("class", "saveBtn");
     rowEl.append(saveBtn);
-};
 
+    //.css sets the style attribute in html (try not to use)
+
+    
+
+};
+//reload element.on("click", function () {
+    // location.reload();
+// });
