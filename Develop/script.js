@@ -1,6 +1,13 @@
-localStorage.getItem($(this).siblings(".hour").attr("data-index")
-    );
+// var dayStart = 09;
+// var dayEnd = 17;
 
+// for (var i = dayStart; i < dayEnd + 1; i++) {
+//     timeLSR = JSON.parse[i];
+//     console.log([i]);
+//     localStorage.getItem(timeLSR);
+// };
+
+localStorage.getItem("9");
 
 
 
@@ -32,7 +39,6 @@ messageEl.text("test text only- to be deleted");
 // create array of each hour of the day 9am-5pm
 var dayStart = 09;
 var dayEnd = 17;
-var arr = [];
 
 // create a row for each hour of the day
 for (var i = dayStart; i < dayEnd + 1; i++) {
@@ -44,7 +50,6 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
     // create div to display hour
     var displayHour = $("<div>");;
     displayHour.addClass("hour col-2");
-    displayHour.attr("data-index", i);
     divTime = moment([i],"HH").format("h a");
     displayHour.text(divTime);
     containerRow.append(displayHour);
@@ -62,9 +67,9 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
 
     divTime = moment([i],"HH").format("HH");
 
-    if (divTime == parseInt(currentHour)) {
+    if (parseInt(divTime) === parseInt(currentHour)) {
         textArea.addClass("present");
-    } else if (divTime < parseInt(currentHour)) {
+    } else if (parseInt(divTime) < parseInt(currentHour)) {
             textArea.addClass("past");
     } else {
             textArea.addClass("future");
@@ -77,7 +82,7 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
     // create button
     var saveBtn = $("<button>");
     saveBtn.addClass("saveBtn col-2");
-    // saveBtn.addId(hours[i]);
+    saveBtn.attr("data-index", i);
     saveBtn.html('<i class="far fa-save"></i>');
     containerRow.append(saveBtn);
 
@@ -88,14 +93,16 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
         console.log("This is the saveBtn: " + $(this));
         console.log("This is the text area:" + $(this).siblings(".text-area").val());
         console.log("This is the data-index: " + $(this).siblings(".hour").attr("data-index"));
+        var textLS =  $(this).siblings(".text-area").val();
+        var timeLS = $(this).attr("data-index");
+
          // delay
         setTimeout(function(){
             messageEl.html("")
         }, 600);
-  
+        localStorage.setItem(timeLS, textLS);
         });
 
-        localStorage.setItem($(this).siblings(".hour").attr("data-index"), $(this).siblings(".text-area").val());
     };
 
 
