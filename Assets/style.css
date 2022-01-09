@@ -3,28 +3,7 @@ body {
   font-size: 16px;
   line-height: 1;
 }
-/* added below */
-.cflex {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  /* align-content: center; */
-  margin-left: 25vh;
-  margin-right: 25vh;
-  margin-bottom: 25vh;
-}
-/* added below */
-.dflex {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  height: 20px;
-  /* width: 80vw; */
-}
 
-/* text area within label */
 textarea {
   background: transparent;
   border: none;
@@ -32,9 +11,6 @@ textarea {
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
-  /* added blelow */
-  width: 50vw;
-  text-align: center;
 }
 
 .jumbotron {
@@ -52,27 +28,18 @@ textarea {
 .time-block {
   text-align: center;
   border-radius: 15px;
-  width: 70vw;
-  
 }
 
 .row {
   white-space: pre-wrap;
-  height: 10vh;
+  height: 80px;
   border-top: 1px solid white;
-  width: 70vw;
 }
 
 .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
-  text-align: right;
-  padding-top: 2vh;
-  padding-right: 2vh;
-  height: 20px;
-  width: 10vw;
-
 }
 
 .past {
@@ -96,9 +63,6 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
-  /* added below */
-  width: 7vw;
-  justify-self: flex-end;
 }
 
 .saveBtn i:hover {

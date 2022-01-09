@@ -1,3 +1,104 @@
+
+// assign body class as per css and add min vh of 100
+var body = $("body");
+body.addClass(".body min-vh-100");
+
+// add moment script to display current day and date
+var today = moment();
+$("#currentDay").text(today.format("dddd, MMMM Do"));
+
+// declare container object
+var timeBlockEl = $(".container");
+timeBlockEl.addClass("time-block");
+
+//create message to display when task is saved
+var messageEl = $("<h3>");
+timeBlockEl.append(messageEl);
+messageEl.css("font-size", "10px");
+messageEl.text("test text only- to be deleted");
+
+// create array of each hour of the day 9am-5pm
+var dayStart = 09;
+var dayEnd = 17;
+var arr = [];
+
+// create a row for each hour of the day
+for (var i = dayStart; i < dayEnd+1; i++) {
+
+    var containerRow = $("<div>");
+    containerRow.addClass("row");
+    timeBlockEl.append(containerRow);
+
+    // create div to display hour
+    var hourDisplay = $("<div>");
+    hourDisplay.addClass("hour col-2")
+    hourDisplay.text([i]);
+    
+    
+    containerRow.append(hourDisplay);
+
+
+
+    // create text area
+    var textArea = $("<textArea>");
+    textArea.addClass("text-area description col-8");
+    // currentHour = today.format("H");
+    currentHour = 12;
+    console.log(currentHour);
+    console.log(hourDisplay.text);
+
+    if (currentHour === hourDisplay) {
+        textArea.addClass("present");
+    } else if (currentHour < hourDisplay) {
+            textArea.addClass("past");
+    } else {
+            textArea.addClass("future");
+    };
+    containerRow.append(textArea);
+    
+
+
+    // create button
+    var saveBtn = $("<button>");
+    saveBtn.addClass("saveBtn col-2");
+    // saveBtn.addId(hours[i]);
+    saveBtn.html('<i class="far fa-save"></i>');
+    containerRow.append(saveBtn);
+
+
+
+
+    saveBtn.on("click", function (event) {
+        event.preventDefault();
+        console.log(textArea);
+        messageEl.html( '<p>Appointment Added to <em class = "textred">local Storage</em></p>' );
+        
+        // delay
+        setTimeout(function(){
+            messageEl.html("")
+          }, 600);
+
+    
+
+    });
+
+
+
+         
+    // })
+    //.css sets the style attribute in html (try not to use)
+
+};
+
+
+
+
+//reload element.on("click", function () {
+    // location.reload();
+// });
+
+
+
 // description input saved to local storage, cleared and message confirming it has been saved to local storage then disappear
 // already in css: color to represent past present and future
 // study structure of html
@@ -19,70 +120,3 @@
 
 // create new element, append and assign attributes all in one line - no js equivalent
 
-
-// declare object for an existing element - js equivilant: var timeBlockEl = querySelector(".container");
-var timeBlockEl = $(".container");
-
-// assign existing class - js equivalent: timeblockEl.className = ("time-block");
-// nb: if no second value, becomes 'get' attribute (not 'set' attribute)
-timeBlockEl.addClass("time-block");
-
-// create and assign new class - js equivalent: timeblockEl.classList.add("d-Flex");
-timeBlockEl.addClass("c-Flex");
-
-
-// create array of each hour of the day 9am-5pm
-var hours = [
-    "9AM",
-    "10AM",
-    "11AM",
-    "12PM",
-    "1PM",
-    "2PM",
-    "3PM",
-    "4PM",
-    "5PM",
-];
-
-// create rows for each hour of the day
-for (var i = 0; i < hours.length; i++) {
-
-    // create div to hold display elements - js equivilant: var rowEl = document.createElement("div");
-    var rowEl = $("<div>");
-    rowEl.addClass("d-Flex");
-    rowEl.addClass("row");
-    // rowEl.addClass("row");
-    // for testing only - need to create an if rule
-    // rowEl.addClass("description");
-    timeBlockEl.append(rowEl);
-
-    // create div to display hour
-    var hourDisplay = $("<div>");
-
-    // append new element - js equivilant: timeBlockEl.appendChild(labelEl);
-    rowEl.append(hourDisplay);
-
-    //add text content - js equivalent: hoursEl.textContent = hours[i];
-    hourDisplay.text(hours[i]);
-    hourDisplay.attr("class", "hour");
-    
-    // create text area
-    var textArea = $("<textArea>")
-    rowEl.append(textArea);
-    textArea.addClass("past");
-    textArea.addClass("textarea");
-    textArea.addClass("description");
-   
-    // create button
-    saveBtn = $("<button>");
-    saveBtn.attr("class", "saveBtn");
-    rowEl.append(saveBtn);
-
-    //.css sets the style attribute in html (try not to use)
-
-    
-
-};
-//reload element.on("click", function () {
-    // location.reload();
-// });
