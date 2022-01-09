@@ -88,14 +88,18 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
 
     };
 
+
+
+    
     var timeLS9 = localStorage.getItem("9");
+
     console.log("This is 9am text from local storage : " + timeLS9);
 
     $("textArea").each(function() {
         // if (textArea.attr("data-index") == "9") {
         //     textArea.text("check if working")
         // }
-        console.log(textArea.attr("data-index")
+        console.log(textArea.attr("data-index"));
     });
 // why is line 98 only console logging 17??
 
