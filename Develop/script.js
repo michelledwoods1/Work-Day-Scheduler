@@ -1,4 +1,5 @@
-var task = localStorage.getItem("task");
+localStorage.getItem($(this).siblings(".hour").attr("data-index")
+    );
 
 
 
@@ -43,6 +44,7 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
     // create div to display hour
     var displayHour = $("<div>");;
     displayHour.addClass("hour col-2");
+    displayHour.attr("data-index", i);
     divTime = moment([i],"HH").format("h a");
     displayHour.text(divTime);
     containerRow.append(displayHour);
@@ -54,10 +56,11 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
     textArea.addClass("text-area description col-8");
     
 
-    divTime = moment([i],"HH").format("HH");
-    console.log(divTime);
+
     currentHour = 14;
     console.log(parseInt(currentHour));
+
+    divTime = moment([i],"HH").format("HH");
 
     if (divTime == parseInt(currentHour)) {
         textArea.addClass("present");
@@ -81,24 +84,19 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
     saveBtn.on("click", function (event) {
         event.preventDefault();
         messageEl.html( '<p>Appointment Added to <em class = "textred">local Storage</em></p>' );
-        localStorage.setItem("task", textArea.val);
-        
-        // delay
+
+        console.log("This is the saveBtn: " + $(this));
+        console.log("This is the text area:" + $(this).siblings(".text-area").val());
+        console.log("This is the data-index: " + $(this).siblings(".hour").attr("data-index"));
+         // delay
         setTimeout(function(){
             messageEl.html("")
-          }, 600);
+        }, 600);
+  
+        });
 
-    
-
-    });
-
-
-
-         
-    // })
-    //.css sets the style attribute in html (try not to use)
-
-};
+        localStorage.setItem($(this).siblings(".hour").attr("data-index"), $(this).siblings(".text-area").val());
+    };
 
 
 
