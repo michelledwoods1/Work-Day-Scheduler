@@ -1,3 +1,8 @@
+var task = localStorage.getItem("task");
+
+
+
+
 
 // assign body class as per css and add min vh of 100
 var body = $("body");
@@ -5,7 +10,13 @@ body.addClass(".body min-vh-100");
 
 // add moment script to display current day and date
 var today = moment();
+
 $("#currentDay").text(today.format("dddd, MMMM Do"));
+
+var currentHour = today.format("HH");
+console.log(currentHour);
+
+
 
 // declare container object
 var timeBlockEl = $(".container");
@@ -23,37 +34,39 @@ var dayEnd = 17;
 var arr = [];
 
 // create a row for each hour of the day
-for (var i = dayStart; i < dayEnd+1; i++) {
+for (var i = dayStart; i < dayEnd + 1; i++) {
 
     var containerRow = $("<div>");
     containerRow.addClass("row");
     timeBlockEl.append(containerRow);
 
     // create div to display hour
-    var hourDisplay = $("<div>");
-    hourDisplay.addClass("hour col-2")
-    hourDisplay.text([i]);
-    
-    
-    containerRow.append(hourDisplay);
+    var displayHour = $("<div>");;
+    displayHour.addClass("hour col-2");
+    divTime = moment([i],"HH").format("h a");
+    displayHour.text(divTime);
+    containerRow.append(displayHour);
 
 
 
     // create text area
     var textArea = $("<textArea>");
     textArea.addClass("text-area description col-8");
-    // currentHour = today.format("H");
-    currentHour = 12;
-    console.log(currentHour);
-    console.log(hourDisplay.text);
+    
 
-    if (currentHour === hourDisplay) {
+    divTime = moment([i],"HH").format("HH");
+    console.log(divTime);
+    currentHour = 14;
+    console.log(parseInt(currentHour));
+
+    if (divTime == parseInt(currentHour)) {
         textArea.addClass("present");
-    } else if (currentHour < hourDisplay) {
+    } else if (divTime < parseInt(currentHour)) {
             textArea.addClass("past");
     } else {
             textArea.addClass("future");
     };
+    textArea.css("color", "black");
     containerRow.append(textArea);
     
 
@@ -65,13 +78,10 @@ for (var i = dayStart; i < dayEnd+1; i++) {
     saveBtn.html('<i class="far fa-save"></i>');
     containerRow.append(saveBtn);
 
-
-
-
     saveBtn.on("click", function (event) {
         event.preventDefault();
-        console.log(textArea);
         messageEl.html( '<p>Appointment Added to <em class = "textred">local Storage</em></p>' );
+        localStorage.setItem("task", textArea.val);
         
         // delay
         setTimeout(function(){
