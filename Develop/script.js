@@ -1,17 +1,3 @@
-// var dayStart = 09;
-// var dayEnd = 17;
-
-// for (var i = dayStart; i < dayEnd + 1; i++) {
-//     timeLSR = JSON.parse[i];
-//     console.log([i]);
-//     localStorage.getItem(timeLSR);
-// };
-
-localStorage.getItem("9");
-
-
-
-
 // assign body class as per css and add min vh of 100
 var body = $("body");
 body.addClass(".body min-vh-100");
@@ -22,8 +8,7 @@ var today = moment();
 $("#currentDay").text(today.format("dddd, MMMM Do"));
 
 var currentHour = today.format("HH");
-console.log(currentHour);
-
+console.log("Current Hour is " + currentHour);
 
 
 // declare container object
@@ -58,12 +43,10 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
 
     // create text area
     var textArea = $("<textArea>");
+    textArea.attr('data-index', i);
     textArea.addClass("text-area description col-8");
     
 
-
-    currentHour = 14;
-    console.log(parseInt(currentHour));
 
     divTime = moment([i],"HH").format("HH");
 
@@ -90,9 +73,9 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
         event.preventDefault();
         messageEl.html( '<p>Appointment Added to <em class = "textred">local Storage</em></p>' );
 
-        console.log("This is the saveBtn: " + $(this));
-        console.log("This is the text area:" + $(this).siblings(".text-area").val());
-        console.log("This is the data-index: " + $(this).siblings(".hour").attr("data-index"));
+        // console.log("This is the saveBtn: " + $(this));
+        // console.log("This is the text area:" + $(this).siblings(".text-area").val());
+        // console.log("This is the data-index: " + $(this).siblings(".hour").attr("data-index"));
         var textLS =  $(this).siblings(".text-area").val();
         var timeLS = $(this).attr("data-index");
 
@@ -104,6 +87,19 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
         });
 
     };
+
+    var timeLS9 = localStorage.getItem("9");
+    console.log("This is 9am text from local storage : " + timeLS9);
+
+    $("textArea").each(function() {
+        // if (textArea.attr("data-index") == "9") {
+        //     textArea.text("check if working")
+        // }
+        console.log(textArea.attr("data-index")
+    });
+// why is line 98 only console logging 17??
+
+
 
 
 
