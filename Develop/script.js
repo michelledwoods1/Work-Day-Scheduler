@@ -18,38 +18,35 @@ timeBlockEl.addClass("time-block");
 //create message to display when task is saved
 var messageEl = $("<h3>");
 timeBlockEl.append(messageEl);
-messageEl.css("font-size", "10px");
-messageEl.text("test text only- to be deleted");
+messageEl.css("font-size", "12px");
+
 
 // create array of each hour of the day 9am-5pm
 var dayStart = 09;
 var dayEnd = 17;
 
-// create a row for each hour of the day
+// create a row for each hour of the day, with 3 columns
 for (var i = dayStart; i < dayEnd + 1; i++) {
-
     var containerRow = $("<div>");
     containerRow.addClass("row");
     timeBlockEl.append(containerRow);
 
-    // create div to display hour
+    // column 1 to display hour of the day
     var displayHour = $("<div>");;
     displayHour.addClass("hour col-2");
     divTime = moment([i],"HH").format("h a");
     displayHour.text(divTime);
     containerRow.append(displayHour);
 
-
-
-    // create text area
+    // column 2 to create text area
     var textArea = $("<textArea>");
     textArea.attr("id", "text-" + i);
     textArea.addClass("text-area description col-8");
-    
 
-
+    // create variable to hold each hour of the day to use in fuction only
     divTime = moment([i],"HH").format("HH");
 
+    // check if acutal time is within an hour of the day on the schedule and change background color accordingly
     if (parseInt(divTime) === parseInt(currentHour)) {
         textArea.addClass("present");
     } else if (parseInt(divTime) < parseInt(currentHour)) {
@@ -59,60 +56,41 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
     };
     textArea.css("color", "black");
     containerRow.append(textArea);
-    
 
-
-    // create button
+    // column 3 for button
     var saveBtn = $("<button>");
     saveBtn.addClass("saveBtn col-2");
     saveBtn.attr("data-index", i);
     saveBtn.html('<i class="far fa-save"></i>');
     containerRow.append(saveBtn);
 
+    // add click event to button
     saveBtn.on("click", function (event) {
         event.preventDefault();
         messageEl.html( '<p>Appointment Added to <em class = "textred">local Storage</em></p>' );
 
-        // console.log("This is the saveBtn: " + $(this));
-        // console.log("This is the text area:" + $(this).siblings(".text-area").val());
-        // console.log("This is the data-index: " + $(this).siblings(".hour").attr("data-index"));
-        var textLS =  $(this).siblings(".text-area").val();
-        var timeLS = $(this).attr("data-index");
-
-         // delay
+         // delay clearing of message, when button is clicked
         setTimeout(function(){
             messageEl.html("")
-        }, 600);
+        }, 800);
+
+        //create variable for setItem information                
+        var textLS =  $(this).siblings(".text-area").val();
+        var timeLS = $(this).attr("data-index");
+        
+        // set localStorage
         localStorage.setItem(timeLS, textLS);
         });
-
     };
 
-
-    var testLSget = localStorage.getItem(9);
-    console.log(testLSget);
-
-    console.log("This is TEST - 9am text recalled from local storage : " + testLSget );
-
-    console.log(textArea.attr("id"));
-
-    var dayStart = 09;
-    var dayEnd = 17;
-    
-    // create a row for each hour of the day
+    // recall local storage for each hour of the day
     for (var i = dayStart; i <= dayEnd; i++) {
         if (localStorage.getItem(i)) {
             var timeLSget = localStorage.getItem([i]);
             console.log("This is TEST - local storage i recalled via for loop : " + localStorage.getItem(i))
             $("#text-" +i).val(localStorage.getItem(i));
         };
-
     };
-
-
-
-
-
 
 
 // description input saved to local storage, cleared and message confirming it has been saved to local storage then disappear
@@ -125,13 +103,5 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
 // moment js
 // depending on the hour - add or remove classes to represent the current or past time
 // refresh - values remain (get from local storage)
-
-
 // current day to display at the top of the calendar
 // when timeblock is clicked, event can be entered and saved for that timeblock
-
-
-
-//reload element.on("click", function () {
-    // location.reload();
-// });
