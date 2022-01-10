@@ -101,22 +101,17 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
     
     // create a row for each hour of the day
     for (var i = dayStart; i <= dayEnd; i++) {
-        if (textArea.attr("id").i) {
+        if (localStorage.getItem(i)) {
             var timeLSget = localStorage.getItem([i]);
             console.log("This is TEST - local storage i recalled via for loop : " + localStorage.getItem(i))
+            $("#text-" +i).val(localStorage.getItem(i));
         };
 
     };
-// why is line 98 only console logging 17?? HELP!!!!!!!!!!!!
 
 
 
 
-
-
-//reload element.on("click", function () {
-    // location.reload();
-// });
 
 
 
@@ -135,9 +130,8 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
 // current day to display at the top of the calendar
 // when timeblock is clicked, event can be entered and saved for that timeblock
 
-// **video 1: 1.06**
 
 
-
-// create new element, append and assign attributes all in one line - no js equivalent
-
+//reload element.on("click", function () {
+    // location.reload();
+// });
