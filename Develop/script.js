@@ -43,7 +43,7 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
 
     // create text area
     var textArea = $("<textArea>");
-    textArea.attr('data-index', i);
+    textArea.attr("id", "text-" + i);
     textArea.addClass("text-area description col-8");
     
 
@@ -89,20 +89,25 @@ for (var i = dayStart; i < dayEnd + 1; i++) {
     };
 
 
+    var testLSget = localStorage.getItem(9);
+    console.log(testLSget);
 
+    console.log("This is TEST - 9am text recalled from local storage : " + testLSget );
 
-    var timeLS9 = localStorage.getItem("9");
+    console.log(textArea.attr("id"));
 
-    console.log("This is 9am text from local storage : " + timeLS9);
+    var dayStart = 09;
+    var dayEnd = 17;
+    
+    // create a row for each hour of the day
+    for (var i = dayStart; i <= dayEnd; i++) {
+        if (textArea.attr("id").i) {
+            var timeLSget = localStorage.getItem([i]);
+            console.log("This is TEST - local storage i recalled via for loop : " + localStorage.getItem(i))
+        };
 
-    $("textArea").each(function() {
-        // if (textArea.attr("data-index") == "9") {
-        //     textArea.text("check if working")
-        // }
-        console.log(textArea.attr("data-index"));
-        console.log(textArea.attr("data-index"));
-    });
-// why is line 98 only console logging 17??
+    };
+// why is line 98 only console logging 17?? HELP!!!!!!!!!!!!
 
 
 
